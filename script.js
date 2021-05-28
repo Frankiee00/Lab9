@@ -5,11 +5,35 @@ let calculateBtn = document.querySelector('#calculate');
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
       output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+
+      //step 3 here too
+      try{
+          if (secondNum == "0" && operator == "/"){
+              throw new MathError("Cannot divide by zero");
+          }
+          output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      }
+
+      catch(mistake){
+          if(mistake instanceof MathError){
+              console.error("Math Error: " + mistake.message);
+          }
+          else{
+              console.error("Data is invalid");
+          }
+      }
+      
+      finally{
+          document.querySelector('#operator').value = null;
+          document.querySelector('#first-num').value = null;
+          document.querySelector('#second-num').value = null;
+      }
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
     // TODO - Make buttons functional
 
+    //step 2
     const logButton = errorBtns[0];
     logButton.addEventListener("click", () => {
         console.log("Console Log Demo");
@@ -63,3 +87,12 @@ let calculateBtn = document.querySelector('#calculate');
         const third = () => { console.trace (); };
         first();
     });
+
+    //step 3
+    class MathError extends Error {
+        constructor(message){
+            super(message);
+            this.name = "Math";
+        }
+    }
+
