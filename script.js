@@ -96,3 +96,13 @@ let calculateBtn = document.querySelector('#calculate');
         }
     }
 
+    //step 5
+    window.onerror = (function (msg, url, lineNo, columnNo, error){
+        console.log("Global Error!!!");
+    });
+
+    const globalerrorButton = errorBtns[10];
+    globalerrorButton.addEventListener("click", () => {
+        broken();
+    });
+
