@@ -88,7 +88,7 @@ let calculateBtn = document.querySelector('#calculate');
         first();
     });
 
-    //step 3
+    //step 4 - custom error
     class MathError extends Error {
         constructor(message){
             super(message);
